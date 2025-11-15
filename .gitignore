@@ -1,0 +1,80 @@
+# Python Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# PyTorch & Model Files
+*.pth
+*.pt
+model.pth
+model_*.pth
+*.model
+checkpoint/
+checkpoints/
+
+# NLTK Data (can be large, downloaded on first run)
+nltk_data/
+
+# Streamlit Cache & Secrets
+.streamlit/
+secrets.toml
+.streamlit/secrets.toml
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env
+.env.local
+
+# Testing & Debugging
+.pytest_cache/
+.coverage
+htmlcov/
+test_output/
+debug_output*.txt
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.log
+*.out
+
+# OS-Specific
+.DS_Store
+Thumbs.db
+*.exe
+*.dll
+
+# Project-Specific
+*.ipynb_checkpoints
+.ipynb_checkpoints/
+
+# Large Data Files (if any)
+*.csv
+*.json
+data/
+datasets/
+
+# Dependency Lock Files (optional - uncomment if using lock files)
+# poetry.lock
+# Pipfile.lock
+
+# IDE workspace settings
+.vscode/settings.json
+.vscode/launch.json
