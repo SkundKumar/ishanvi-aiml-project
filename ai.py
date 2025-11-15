@@ -453,28 +453,75 @@ def sentence_to_features(sentence_words, words):
     return torch.tensor(features).float().unsqueeze(0)
 
 
-def generate_response(sentence, model, words, classes, confidence_threshold=0.15):
-    sentence_words = preprocess_sentence(sentence)
-    sentence_words_in_vocab = [w for w in sentence_words if w in words]
+def _best_intent_by_overlap(sentence_words, intents_obj):
+  """Return the intent tag with the highest token-overlap score (and the score).
 
-    if len(sentence_words_in_vocab) == 0:
-        return "I'm sorry, but I don't understand. Can you please rephrase or provide more information?"
+  This is a simple heuristic used as a conversational fallback when the model
+  is unsure or the user asks a short follow-up. It counts lemmatized token
+  overlap between the user's sentence and each intent's patterns.
+  """
+  best_tag = None
+  best_score = 0
+  sent_set = set(sentence_words)
+  for intent in intents_obj['intents']:
+    # combine all pattern tokens for this intent
+    intent_tokens = []
+    for p in intent.get('patterns', []):
+      intent_tokens.extend([stemmer.lemmatize(w.lower()) for w in nltk.word_tokenize(p)])
+    score = len(sent_set.intersection(set(intent_tokens)))
+    if score > best_score:
+      best_score = score
+      best_tag = intent['tag']
+  return best_tag, best_score
 
-    features = sentence_to_features(sentence_words_in_vocab, words)
 
-    with torch.no_grad():
-        outputs = model(features)
+def generate_response(sentence, model, words, classes, confidence_threshold=0.15, prev_tag=None):
+  sentence_words = preprocess_sentence(sentence)
+  sentence_words_in_vocab = [w for w in sentence_words if w in words]
 
-    probabilities, predicted_class_index = torch.max(outputs, dim=1)
-    confidence = probabilities.item()
-    predicted_tag = classes[predicted_class_index.item()]
+  # If the sentence contains no known tokens, attempt to answer using
+  # previous context (prev_tag) or return a polite fallback.
+  if len(sentence_words_in_vocab) == 0:
+    if prev_tag:
+      # return another response from the previous tag to continue the thread
+      for intent in intents['intents']:
+        if intent['tag'] == prev_tag:
+          return random.choice(intent['responses'])
+    return "I'm sorry, but I don't understand. Can you please rephrase or provide more information?"
 
-    if confidence > confidence_threshold:
-        for intent in intents['intents']:
-            if intent['tag'] == predicted_tag:
-                return random.choice(intent['responses'])
+  features = sentence_to_features(sentence_words_in_vocab, words)
 
-    return "I'm sorry, but I'm not sure how to respond to that."
+  with torch.no_grad():
+    outputs = model(features)
+
+  probabilities, predicted_class_index = torch.max(outputs, dim=1)
+  confidence = probabilities.item()
+  predicted_tag = classes[predicted_class_index.item()]
+
+  # If confident enough, return the matching intent response
+  if confidence > confidence_threshold:
+    for intent in intents['intents']:
+      if intent['tag'] == predicted_tag:
+        return random.choice(intent['responses'])
+
+  # Conversational fallback: short follow-ups like "and?", "what about fees?",
+  # or pronoun-based queries should try to reuse previous tag if provided.
+  lowered = sentence.lower()
+  follow_up_tokens = ['and', 'also', 'what about', 'more', 'tell me more', 'details', 'how about', 'that', 'then']
+  if prev_tag and any(ft in lowered for ft in follow_up_tokens):
+    for intent in intents['intents']:
+      if intent['tag'] == prev_tag:
+        return random.choice(intent['responses'])
+
+  # If model not confident, try a heuristic overlap search across intent patterns
+  best_tag, best_score = _best_intent_by_overlap(sentence_words, intents)
+  if best_tag and best_score > 0:
+    for intent in intents['intents']:
+      if intent['tag'] == best_tag:
+        return random.choice(intent['responses'])
+
+  # Last resort
+  return "I'm sorry, but I'm not sure how to respond to that."
 
 
 def ensure_model(model_path='model.pth', num_epochs=20, retrain=False, print_progress=False):
