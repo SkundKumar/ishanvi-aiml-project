@@ -17,7 +17,7 @@ warnings.filterwarnings('ignore')
 
 # --- 1. Intents Data ---
 intents = {
-    "intents": [
+   "intents": [
   {
     "tag": "bennett_admissions_process",
     "patterns": [
@@ -26,10 +26,11 @@ intents = {
       "Tell me the steps for admission.",
       "What documents are needed for application?",
       "Is there an entrance exam?",
-      "How does the selection process work?"
+      "How does the selection process work?",
+      "What is the application procedure?"
     ],
     "responses": [
-      "Apply by filling the online application form on the official Bennett University admissions portal. Selection is primarily merit-based and may consider Class XII scores, national exam scores (where applicable, e.g., JEE Main, SAT, CUET), and/or Bennett’s own entrance tests (such as BUDAT/BUMAT/BULAT) depending on the program. Some programs include personal interviews or portfolio reviews. Required documents typically include mark-sheets, photo ID, passport-size photo, and any exam scorecards — check the admissions page for the exact document list for your program."
+      "The admission process is merit-based. The main steps are: 1. Fill the application form on the website (applications.bennett.edu.in/bu). 2. Submit/Update your scores (like Class XII, JEE, CUET, SAT) within 7 days of their declaration. 3. Candidates are shortlisted based on their scores. 4. Selected candidates receive a provisional admission offer letter via email. 5. Pay the required fee by the specified date to confirm your seat."
     ]
   },
   {
@@ -79,7 +80,7 @@ intents = {
       "What specializations are offered in the MBA?"
     ],
     "responses": [
-      "Yes — Bennett’s School of Management offers undergraduate (BBA) and postgraduate (MBA) programs. MBA specializations and elective areas include Marketing, Finance, Human Resources, Business Analytics, Media Management, and Logistics & Supply Chain Management. Program details and admission requirements are available on the Management school pages."
+      "Yes — Bennett’s School of Management offers undergraduate (BBA) and postgraduate (MBA) programs. MBA specializations and elective areas include Marketing, Finance, Human Resources, Business Analytics, Media Management, and Logistics & Supply Chain Management. Program details and admission requirements areavailable on the Management school pages."
     ]
   },
   {
@@ -101,10 +102,13 @@ intents = {
       "What is the average package?",
       "Which companies recruit from Bennett?",
       "Tell me about the placement record for B.Tech.",
-      "What was the highest package offered?"
+      "What was the highest package offered?",
+      "What is the placement for MBA?",
+      "How are the placements for Law?",
+      "What is the average package for BBA or MCA?"
     ],
     "responses": [
-      "Bennett University reports strong placement outcomes. For B.Tech, the highest domestic package reported has reached ₹1.37 Crore PA with an average around ₹11.10 LPA. For MBA, recent placement reports show a highest package of ₹33 LPA and an average of approximately ₹7.41 LPA. Over 450 organizations participate in campus hiring across programs—refer to the official Placements page for year-wise and program-wise breakdowns."
+      "Bennett has a strong placement record managed by its Career Services Team. Key stats include: B.Tech (Highest: ₹1.37 Cr PA, Avg: ₹11.10 LPA), MBA (Highest: ₹33 LPA, Avg: ₹7.41 LPA), Law (Highest: ₹28.17 LPA, Avg: ₹6.7 LPA), BBA (Highest: ₹23.5 LPA, Avg: ₹5.16 LPA), MCA (Highest: ₹18 LPA, Avg: ₹5.7 LPA), and BA Mass Comm (Highest: ₹21 LPA, Avg: ₹3.91 LPA). Over 750 companies participate in placements."
     ]
   },
   {
@@ -137,11 +141,77 @@ intents = {
       "What student clubs are there?",
       "How is the campus life?",
       "Are there extracurricular activities?",
-      "Can I join a music or drama club?",
-      "What is there to do outside of academics?"
+      "What is there to do outside of academics?",
+      "Tell me about the student societies",
+      "What fests or cultural events happen?",
+      "What is campus life like?"
     ],
     "responses": [
-      "Campus life at Bennett is active with numerous student-run clubs and societies across music, drama, dance, gaming, comedy, technology, entrepreneurship, and social causes. Examples include music and dramatics societies and several technical and cultural clubs — students can join clubs based on interest and participate in events, fests, and competitions. See the student activities / clubs section for an updated list."
+      "Campus life at Bennett is very active. There are over 40 student-led clubs and societies covering interests like music, drama, dance, technology, entrepreneurship, and social causes. The university also hosts a calendar full of dynamic events, including cultural festivals, college fests, and competitions."
+    ]
+  },
+  {
+    "tag": "bennett_sports_facilities",
+    "patterns": [
+      "What sports facilities are there?",
+      "Is there a gym or sports complex?",
+      "Can I play cricket or football on campus?",
+      "Tell me about the sports arenas",
+      "Are there basketball courts?",
+      "What sports can I play?"
+    ],
+    "responses": [
+      "Yes, Bennett has extensive sports facilities on its 68-acre campus. This includes a large sports complex with 16+ state-of-the-art arenas, featuring sprawling cricket and football grounds, and dedicated courts for badminton and basketball, among other sports."
+    ]
+  },
+  {
+    
+    "tag": "bennett_atm",
+    "patterns": [
+      "Is there an ATM on campus?",
+      "Where can I find an ATM?",
+      "ATM location"
+    ],
+    "responses": [
+      "Yes, there is a 24x7 ATM on campus for your convenience."
+    ]
+  },
+  {
+    "tag": "bennett_food_options",
+    "patterns": [
+      "What food options are on campus?",
+      "Are there hangout spots or eating joints?",
+      "Can I get food like Domino's?",
+      "What about dining?",
+      "Where can I eat?",
+      "Tell me about the cafeteria or mess"
+    ],
+    "responses": [
+      "Yes, the campus has various hangout spots, eating joints, and dining options, including popular food chains like Domino's. This is in addition to the mess/cafeteria facilities for hostel residents."
+    ]
+  },
+  {
+    "tag": "bennett_wellness_center",
+    "patterns": [
+      "Is there a wellness center or medical facility?",
+      "What is the wellness centre?",
+      "Is there a doctor on campus?",
+      "What if I get sick?"
+    ],
+    "responses": [
+      "Yes, there is an on-campus Wellness Centre. It's a 20-bed integrated medical facility to handle student health needs."
+    ]
+  },
+  {
+    "tag": "bennett_convenience_store",
+    "patterns": [
+      "Is there a convenience store?",
+      "Where can I buy daily need items?",
+      "Is there a shop on campus?",
+      "What about shopping?"
+    ],
+    "responses": [
+      "Yes, there is a convenience store on campus to meet daily needs."
     ]
   },
   {
@@ -162,10 +232,138 @@ intents = {
       "Does Bennett University offer scholarships?",
       "How can I get a scholarship?",
       "What are the eligibility criteria for scholarships?",
-      "Is there a scholarship for a single girl child?"
+      "What is the merit-based scholarship?",
+      "Is there a scholarship based on JEE or CUET score?",
+      "How much scholarship can I get for B.Tech?"
     ],
     "responses": [
-      "Yes — Bennett offers merit-based scholarships for incoming students (based on Class XII, IB, or SAT scores where applicable) and academic scholarships for continuing students based on CGPA. The university also maintains specific policies for categories such as single girl child and wards of defense personnel. Eligibility criteria, scholarship percentages, and application procedures are detailed on the Scholarships / Financial Aid page."
+      "Yes, Bennett offers merit-based scholarships (up to 50%) for the first year, awarded on a first-come, first-served basis. Eligibility is based on 2025 competitive exam scores (like JEE Mains, CUET) or Class XII marks from 2024/2025. For example, for B.Tech, a 50% scholarship may be offered for a Class XII (Best of 3) score >= 96% or a JEE score >= 90 percentile. Scholarship seats are limited, and meeting the criteria doesn't guarantee an award. To continue the scholarship, a student must maintain a CGPA of 8 with no backlogs."
+    ]
+  },
+  {
+    "tag": "bennett_special_scholarships",
+    "patterns": [
+      "Is there a scholarship for a single girl child?",
+      "What about a scholarship for siblings?",
+      "Do alumni get any scholarship benefits?",
+      "Is there a discount for defence personnel?"
+    ],
+    "responses": [
+      "Yes, in addition to the main merit-based scholarships, Bennett University also offers 'Other (Special) Scholarships'. These include categories for Sibling, Single Girl Child, Alumni, and Defence Personnel. You should contact the admissions office for specific details and eligibility for these."
+    ]
+  },
+  {
+    "tag": "bennett_about",
+    "patterns": [
+      "Tell me about Bennett University",
+      "What is Bennett University?",
+      "Who founded Bennett University?",
+      "What is the university's vision?",
+      "How big is the campus?",
+      "How many students are there?"
+    ],
+    "responses": [
+      "Bennett University, established by The Times Group, is a private, research-driven university in Greater Noida. It's a 68-acre campus with over 11,500 students. It focuses on industry-aligned education across Engineering, AI, Management, Media, Law, Liberal Arts, and Design, with a faculty that is over 90% Ph.D. holders."
+    ]
+  },
+  {
+    "tag": "bennett_times_group_legacy",
+    "patterns": [
+      "What is the Times Group connection?",
+      "Tell me about the Times Group legacy",
+      "Is this university related to Times of India?"
+    ],
+    "responses": [
+      "Yes, Bennett University was established by The Times Group, India's oldest and largest media house, which began in 1838. This connection provides the university with strong industry engagement and a focus on 'New Age' skills."
+    ]
+  },
+  {
+    "tag": "bennett_ai_courses",
+    "patterns": [
+      "What courses are in the School of Artificial Intelligence?",
+      "Can I study AI at Bennett?",
+      "Tell me about AI programs",
+      "Do you have B.Tech in AI?",
+      "Do you offer BCA in Artificial Intelligence?"
+    ],
+    "responses": [
+      "Yes, Bennett has a dedicated School of Artificial Intelligence. It offers undergraduate programs like B.Tech (Artificial Intelligence), BCA (Artificial Intelligence), and B.Sc. (Artificial Intelligence), as well as M.Tech, M.Sc., and MCA programs focused on AI."
+    ]
+  },
+  {
+    "tag": "bennett_liberal_arts_courses",
+    "patterns": [
+      "What are the liberal arts programs?",
+      "Tell me about the School of Liberal Arts",
+      "Can I get a B.A. in Psychology?",
+      "What B.A. Hons. degrees are offered?",
+      "Do you have a degree in Economics or Sociology?"
+    ],
+    "responses": [
+      "The School of Liberal Arts offers several B.A. (Hons.) degrees, including specializations in Psychology, Economics, English Literature, Sociology, Philosophy, Business Studies, and Political Science & International Relations."
+    ]
+  },
+  {
+    "tag": "bennett_media_courses",
+    "patterns": [
+      "What courses does the Times School of Media offer?",
+      "Tell me about the media programs",
+      "Can I study journalism?",
+      "Do you have a B.A. in Mass Communication?",
+      "What about film or TV programs?"
+    ],
+    "responses": [
+      "The Times School of Media offers undergraduate programs like B.A. (Mass Communication) and B.A. (Film, TV & Web Series), as well as postgraduate and doctoral programs in media."
+    ]
+  },
+  {
+    "tag": "bennett_design_courses",
+    "patterns": [
+      "What design courses are available?",
+      "Tell me about the School of Design",
+      "Do you offer Fashion Design?",
+      "What is B. Des?",
+      "Can I study Game Design or VFX?"
+    ],
+    "responses": [
+      "The School of Design offers B.Des (Hons.) programs in Fashion Design, Intelligent Textile Design, Product Design with AI, Game Design, Advanced Animation & VFX, and Communication Design."
+    ]
+  },
+  {
+    "tag": "bennett_research",
+    "patterns": [
+      "How is the research at Bennett?",
+      "Tell me about research excellence",
+      "How many labs or patents does Bennett have?",
+      "What research grants has the university received?"
+    ],
+    "responses": [
+      "Bennett has a strong focus on research, with 121+ high-end labs, over 6000 publications, and 188 published patents. The university has received over Rs 30 Cr. in research and consultancy grants."
+    ]
+  },
+  {
+    "tag": "bennett_innovation_startups",
+    "patterns": [
+      "Is there an innovation center?",
+      "Does Bennett support startups?",
+      "What is the Spark Cell?",
+      "Tell me about entrepreneurship on campus"
+    ],
+    "responses": [
+      "Yes, Bennett has an Innovation Centre that supports student startups through mentors, a Startup Portfolio, and the 'Spark Cell'. Over 60 startups have been launched, raising over ₹120 Cr+ in funds."
+    ]
+  },
+  {
+    "tag": "bennett_global_partnerships",
+    "patterns": [
+      "Does Bennett have international collaborations?",
+      "What are the global programs?",
+      "Can I study abroad?",
+      "Tell me about the global pathway program",
+      "Who are the academic partners?"
+    ],
+    "responses": [
+      "Yes, Bennett has over 90 international collaborations with universities like Kent State University (USA), The University of BColumbia (Canada), and Florida International University (USA). They offer Global Pathway programs (like 2+2 or 3+1) allowing students to study partially at a partner university abroad."
     ]
   },
   {
@@ -182,7 +380,6 @@ intents = {
   }
 ]
 }
-
 # --- 2. NLTK Downloads and Preprocessing ---
 # Ensure NLTK data is available and downloaded into a project-local folder.
 nltk_data_dir = os.path.join(os.path.dirname(__file__), 'nltk_data')
