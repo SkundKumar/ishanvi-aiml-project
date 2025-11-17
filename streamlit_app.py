@@ -17,7 +17,7 @@ from ai import (
 # --- Page Config (Set this ONCE at the top) ---
 # Use 'wide' layout for a more modern feel
 # Set theme directly in config
-st.set_page_config(page_title='Bennett Chatbot', layout='wide', initial_sidebar_state='collapsed')
+st.set_page_config(page_title='Bennett Chatbot', layout="centered", initial_sidebar_state='collapsed')
 
 # --- Model Loading ---
 @st.cache_resource
